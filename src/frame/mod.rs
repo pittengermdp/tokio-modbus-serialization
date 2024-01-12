@@ -13,6 +13,8 @@ use std::{
     fmt::{self, Display},
 };
 
+use serde::{Deserialize, Serialize};
+
 use crate::bytes::Bytes;
 
 /// A Modbus function code.
@@ -115,7 +117,7 @@ pub(crate) type Word = u16;
 pub type Quantity = u16;
 
 /// A request represents a message from the client (master) to the server (slave).
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Request<'a> {
     /// A request to read multiple coils.
     /// The first parameter is the address of the first coil to read.
